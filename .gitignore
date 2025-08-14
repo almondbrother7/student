@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.swp
+*.DS_Store
+# build output
+**/App_Data/*.log
+# secrets (add your own folder names here if any)
+Private/
