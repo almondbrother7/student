@@ -1,0 +1,48 @@
+# Get students list
+curl -sS https://localhost:7062/api/students | jq
+curl -sS https://localhost:7062/api/students
+
+# Create student (Linus) — id omitted; server assigns
+curl -i -X POST https://localhost:7062/api/students \
+  -H "Content-Type: application/json" \
+  -d '{
+    "firstName": "Linus",
+    "lastName": "Youngadev",
+    "address": "1 Kernel Way, Cupertino, CA, 94024",
+    "dateOfBirth": "2015-04-06",
+    "email": "linus@example.com",
+    "phone": "321-555-0104",
+    "grade": "4"
+  }'
+
+# Create student (Al) — id omitted; server assigns
+curl -i -X POST https://localhost:7062/api/students \
+  -H "Content-Type: application/json" \
+  -d '{
+    "firstName": "Al",
+    "lastName": "Dente",
+    "address": "555 Food Ct, Cupertino, CA, 94024",
+    "dateOfBirth": "2013-05-05",
+    "email": "al@example.com",
+    "phone": "321-555-0105",
+    "grade": "2"
+  }'
+
+# Get student by ID (example: 1)
+curl -sS https://localhost:7062/api/students/1 | jq
+
+# Update student (example: id 1) — route id is source of truth
+curl -i -X PUT https://localhost:7062/api/students/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "firstName": "Linus",
+    "lastName": "Youngadev",
+    "address": "123 Update Way, Cupertino, CA, 94024",
+    "dateOfBirth": "2015-04-06",
+    "email": "linus@example.com",
+    "phone": "321-555-0104",
+    "grade": "4"
+  }'
+
+# Delete a student (example: id 1)
+curl -i -X DELETE https://localhost:7062/api/students/1

@@ -1,0 +1,45 @@
+Request data to pass to api endpoints to exercise various validations
+
+Create or Update - should fail empty first name
+{
+    "firstName": "",
+    "lastName": "Hopper",
+    "address": "99 Cobol Ct",
+    "dateOfBirth": "2010-12-09T00:00:00",
+    "email": null,
+    "phone": null,
+    "grade": "K"
+}
+
+Email format
+{
+    "firstName": "Grace",
+    "lastName": "Hopper",
+    "address": "99 Cobol Ct",
+    "dateOfBirth": "2010-12-09T00:00:00",
+    "email": "graceexample.com",
+    "phone": null,
+    "grade": "K"
+}
+
+Grade
+{
+    "firstName": "Grace",
+    "lastName": "Hopper",
+    "address": "99 Cobol Ct",
+    "dateOfBirth": "2010-12-09T00:00:00",
+    "email": "grace@example.com",
+    "phone": null,
+    "grade": "Senior"
+}
+
+Phone
+{
+    "firstName": "Grace",
+    "lastName": "Hopper",
+    "address": "99 Cobol Ct",
+    "dateOfBirth": "2010-12-09T00:00:00",
+    "email": "grace@example.com",
+    "phone": "555-1212",
+    "grade": "K"
+}

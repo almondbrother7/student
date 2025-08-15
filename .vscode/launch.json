@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Students (InMemory)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/Students/bin/Debug/net8.0/Students.dll",
+      "cwd": "${workspaceFolder}/Students",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "STUDENTS_REPO": "memory",
+        "ASPNETCORE_URLS": "http://localhost:5069;https://localhost:7062"
+      },
+      "preLaunchTask": "build Students"
+    },
+    {
+      "name": "Students (JSON)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "${workspaceFolder}/Students/bin/Debug/net8.0/Students.dll",
+      "cwd": "${workspaceFolder}/Students",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "STUDENTS_REPO": "json",
+        "STUDENTS_PATH": "./App_Data/students.json",
+        "ASPNETCORE_URLS": "http://localhost:5069;https://localhost:7062"
+      },
+      "preLaunchTask": "build Students"
+    },
+    {
+      "name": ".NET: Attach",
+      "type": "coreclr",
+      "request": "attach",
+      "processId": "${command:pickProcess}"
+    }
+  ]
+}

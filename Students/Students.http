@@ -1,0 +1,42 @@
+@host = https://localhost:7062
+@json = application/json
+
+### Get all students
+GET {{host}}/api/students
+Accept: {{json}}
+
+### Get student by id
+GET {{host}}/api/students/3
+Accept: {{json}}
+
+### Create student (POST) — id omitted; server assigns
+POST {{host}}/api/students
+Content-Type: {{json}}
+Accept: {{json}}
+
+{
+  "firstName": "New",
+  "lastName": "Student",
+  "address": "123 Main St, Springfield, IL 62701",
+  "dateOfBirth": "2012-07-15",
+  "email": "new.student@example.com",
+  "phone": "321-555-0199",
+  "grade": "7"
+}
+
+### Update student (PUT) — route id is source of truth
+PUT {{host}}/api/students/4
+Content-Type: {{json}}
+
+{
+  "firstName": "New",
+  "lastName": "Student",
+  "address": "123 Tree St, Springfield, IL 62701",
+  "dateOfBirth": "2012-07-15",
+  "email": "new.student@example.com",
+  "phone": "321-555-0199",
+  "grade": "7"
+}
+
+### Delete student
+DELETE {{host}}/api/students/4
