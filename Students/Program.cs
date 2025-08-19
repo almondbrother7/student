@@ -142,6 +142,10 @@ app.UseCors("Dev");
 
 app.MapControllers();
 
+
+// Make home show the links for swagger and to get students json
+app.MapGet("/", () => Results.Text("Students API is running. See /swagger and /api/students"));
+
 // For testing the duplicate email exception handler:
 app.MapGet("/debug/ExceptionEmailAlreadyInUse", () =>
 {
