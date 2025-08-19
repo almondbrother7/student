@@ -12,21 +12,9 @@ namespace Students.Controllers
     [Route("api/[controller]")]
     public class StudentsController : ControllerBase
     {
-        private readonly IStudentRepository _repo;
-        private readonly ILogger<StudentsController> _log;
-
         private readonly IStudentService _studentService;
 
-
-        public StudentsController(
-                IStudentRepository repo,
-                ILogger<StudentsController> log,
-                IStudentService studentService)
-        {
-            _repo = repo;
-            _log = log;
-            _studentService = studentService;
-        }
+        public StudentsController(IStudentService studentService) => _studentService = studentService;
 
         // GET: /api/students
         [HttpGet]
@@ -40,12 +28,9 @@ namespace Students.Controllers
 
         // POST: /api/students
         [HttpPost]
-        public ActionResult<StudentRequestDto> Create(StudentRequestDto dto)
+        public ActionResult<StudentResponseDto> Create(StudentRequestDto dto)
         {
-            if (!ModelState.IsValid) return ValidationProblem(ModelState);
-
             var student = _studentService.Create(dto);
-
             return CreatedAtRoute("GetStudent", new { id = student.Id }, student);
         }
 
@@ -53,20 +38,13 @@ namespace Students.Controllers
         [HttpPut("{id:int}")]
         public IActionResult Update(int id, StudentRequestDto dto)
         {
-            if (!ModelState.IsValid) return ValidationProblem(ModelState);
-
             var success = _studentService.Update(id, dto);
-
             return success ? NoContent() : NotFound();
         }
 
         // DELETE: /api/students/5
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
-        {
-            var success = _studentService.Delete(id);
-
-            return success ? NoContent() : NotFound();
-        }
+            => _studentService.Delete(id) ? NoContent() : NotFound();
     }
 }
