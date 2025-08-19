@@ -117,3 +117,14 @@ dotnet dev-certs https --check
 ```
 
 If you still see HTTPS issues, try the HTTP URL (`http://localhost:5069`) or clear any cached HSTS entries in your browser.
+
+### Clear HSTS cache (Chrome/Edge)
+
+**Chrome**  
+- Go to `chrome://net-internals/#hsts`. If unavailable in your version, clear site data instead.  
+- Under **Delete domain security policies**, enter `localhost`, click **Delete**.  
+- Or via settings: **Settings → Privacy & security → Site settings → View permissions and data stored across sites** → search `localhost` → **Clear data**.
+
+**Edge**  
+- Similar steps. You can try `edge://net-internals/#hsts` on many versions, or clear site data for `localhost` via **Settings → Privacy & security**.
+
