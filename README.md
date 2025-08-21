@@ -34,8 +34,6 @@ or
 dotnet run --project Students/Students.csproj --launch-profile "Students (JSON)"
 - 2. Open Swagger UI:
 https://localhost:7062/
-or
-https://localhost:7062/swagger/index.html
 - 3. Run the debug endpoint to see a 409 error:
 https://localhost:7062/debug/ExceptionEmailAlreadyInUse
 ```
