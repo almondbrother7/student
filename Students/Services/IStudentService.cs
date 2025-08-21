@@ -10,5 +10,6 @@ namespace Students.Services
         StudentResponseDto Create(StudentRequestDto dto);
         bool Update(int id, StudentRequestDto dto);
         bool Delete(int id);
+        IEnumerable<StudentResponseDto> Search(StudentSearchRequest req);
     }
 }

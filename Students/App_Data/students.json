@@ -7,7 +7,8 @@
     "dateOfBirth": "2008-12-10T00:00:00",
     "email": "ada@example.com",
     "phone": "321-555-0101",
-    "grade": "12"
+    "grade": "12",
+    "enrollmentStatus": "active"
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "dateOfBirth": "2009-06-23T00:00:00",
     "email": "alan@example.com",
     "phone": "(321) 555-0102",
-    "grade": "11"
+    "grade": "11",
+    "enrollmentStatus": "active"
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "dateOfBirth": "2010-12-09T00:00:00",
     "email": null,
     "phone": null,
-    "grade": "10"
+    "grade": "10",
+    "enrollmentStatus": "inactive"
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "dateOfBirth": "2015-04-06T00:00:00",
     "email": "linus@example.com",
     "phone": "321-555-0104",
-    "grade": "4"
+    "grade": "4",
+    "enrollmentStatus": "active"
   },
   {
     "id": 5,
@@ -47,6 +51,7 @@
     "dateOfBirth": "2013-05-05T00:00:00",
     "email": "al@example.com",
     "phone": "321-555-0105",
-    "grade": "1"
+    "grade": "1",
+    "enrollmentStatus": "suspended"
   }
 ]

@@ -46,5 +46,16 @@ namespace Students.Controllers
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
             => _studentService.Delete(id) ? NoContent() : NotFound();
+
+        [HttpGet("search")]
+        [ProducesResponseType(typeof(IEnumerable<StudentResponseDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
+        public ActionResult<IEnumerable<StudentResponseDto>> Search([FromQuery] StudentSearchRequest req)
+        {
+            // [ApiController] will auto-400 for invalid query; if we get here, it's valid
+            var results = _studentService.Search(req);
+            return Ok(results);
+        }
+
     }
 }

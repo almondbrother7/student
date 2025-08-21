@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Students.Models;
 
 namespace Students.Repositories
@@ -33,9 +34,11 @@ namespace Students.Repositories
             var opts = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 ReadCommentHandling = JsonCommentHandling.Skip,
                 AllowTrailingCommas = true
             };
+            opts.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
 
             var items = JsonSerializer.Deserialize<List<Student>>(json, opts) ?? new();
             _store.Clear();
@@ -67,8 +70,12 @@ namespace Students.Repositories
             var saveOpts = new JsonSerializerOptions
             {
                 WriteIndented = true,
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                PropertyNameCaseInsensitive = true,
+                AllowTrailingCommas = true,
             };
+            saveOpts.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+
             var tmp = _path + ".tmp";
             File.WriteAllText(tmp, JsonSerializer.Serialize(list, saveOpts));
             if (File.Exists(_path)) File.Delete(_path);
@@ -125,7 +132,8 @@ namespace Students.Repositories
             DateOfBirth = s.DateOfBirth,
             Email = s.Email,
             Phone = s.Phone,
-            Grade = s.Grade
+            Grade = s.Grade,
+            EnrollmentStatus = s.EnrollmentStatus
         };
     }
 }

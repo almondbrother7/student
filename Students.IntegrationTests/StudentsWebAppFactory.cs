@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Students.Repositories;
-// using Students.Models; // only needed if you seed sample Students
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,10 +22,8 @@ public class StudentsWebAppFactory : WebApplicationFactory<Program>
             });
         });
 
-        // ⬇️ This is the spot you asked about
         builder.ConfigureServices(services =>
         {
-            // Replace whatever IStudentRepository Program.cs registered
             var existing = services.SingleOrDefault(d => d.ServiceType == typeof(IStudentRepository));
             if (existing != null) services.Remove(existing);
 

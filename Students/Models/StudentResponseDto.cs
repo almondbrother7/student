@@ -1,8 +1,23 @@
+using Students.Enums;
+
 namespace Students.Models
 {
     public class StudentResponseDto
     {
-        public int Id { get; set;  }
+                public StudentResponseDto() { }
+
+        public StudentResponseDto(int id, string firstName, string lastName, string? email, string grade, EnrollmentStatus enrollmentStatus)
+        {
+            Id = id;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Grade = grade;
+            EnrollmentStatus = enrollmentStatus;
+        }
+
+        public int Id { get; set; }
+        
         public string FirstName { get; set; } = string.Empty;
 
         public string LastName { get; set; } = string.Empty;
@@ -16,5 +31,7 @@ namespace Students.Models
         public string? Phone { get; set; }
 
         public string Grade { get; set; } = string.Empty;
+
+        public EnrollmentStatus EnrollmentStatus { get; set; }
     };
 }

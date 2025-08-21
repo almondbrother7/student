@@ -12,7 +12,8 @@ curl -i -X POST https://localhost:7062/api/students \
     "dateOfBirth": "2015-04-06",
     "email": "linus@example.com",
     "phone": "321-555-0104",
-    "grade": "4"
+    "grade": "4",
+    "enrollmentstatus": 0
   }'
 
 # Create student (Al) — id omitted; server assigns
@@ -25,7 +26,8 @@ curl -i -X POST https://localhost:7062/api/students \
     "dateOfBirth": "2013-05-05",
     "email": "al@example.com",
     "phone": "321-555-0105",
-    "grade": "2"
+    "grade": "2",
+    "enrollmentstatus": 0
   }'
 
 # Get student by ID (example: 1)
@@ -41,7 +43,8 @@ curl -i -X PUT https://localhost:7062/api/students/1 \
     "dateOfBirth": "2015-04-06",
     "email": "linus@example.com",
     "phone": "321-555-0104",
-    "grade": "4"
+    "grade": "4",
+    "enrollmentstatus": 0
   }'
 
 # Delete a student (example: id 1)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Students.Models;
+using Students.Enums;
 
 namespace Students.Mappings
 {
@@ -20,7 +21,8 @@ namespace Students.Mappings
                 DateOfBirth= dto.DateOfBirth,
                 Email      = string.IsNullOrWhiteSpace(dto.Email) ? null : dto.Email,
                 Phone      = string.IsNullOrWhiteSpace(dto.Phone) ? null : dto.Phone,
-                Grade      = dto.Grade?.Trim() ?? string.Empty
+                Grade      = dto.Grade?.Trim() ?? string.Empty,
+                EnrollmentStatus = dto.EnrollmentStatus ?? EnrollmentStatus.Active
             };
         }
 
@@ -29,13 +31,14 @@ namespace Students.Mappings
             if (target == null) throw new ArgumentNullException(nameof(target));
             if (dto == null) throw new ArgumentNullException(nameof(dto));
 
-            target.FirstName   = dto.FirstName?.Trim() ?? string.Empty;
-            target.LastName    = dto.LastName?.Trim() ?? string.Empty;
-            target.Address     = dto.Address?.Trim() ?? string.Empty;
+            target.FirstName = dto.FirstName?.Trim() ?? string.Empty;
+            target.LastName = dto.LastName?.Trim() ?? string.Empty;
+            target.Address = dto.Address?.Trim() ?? string.Empty;
             target.DateOfBirth = dto.DateOfBirth;
-            target.Email       = string.IsNullOrWhiteSpace(dto.Email) ? null : dto.Email;
-            target.Phone       = string.IsNullOrWhiteSpace(dto.Phone) ? null : dto.Phone;
-            target.Grade       = dto.Grade?.Trim() ?? string.Empty;
+            target.Email = string.IsNullOrWhiteSpace(dto.Email) ? null : dto.Email;
+            target.Phone = string.IsNullOrWhiteSpace(dto.Phone) ? null : dto.Phone;
+            target.Grade = dto.Grade?.Trim() ?? string.Empty;
+            target.EnrollmentStatus = dto.EnrollmentStatus ?? target.EnrollmentStatus;
         }
 
         public static StudentResponseDto ToResponseDto(this Student s)
@@ -44,14 +47,15 @@ namespace Students.Mappings
 
             return new StudentResponseDto
             {
-                Id          = s.Id,
-                FirstName   = s.FirstName,
-                LastName    = s.LastName,
-                Address     = s.Address,
+                Id = s.Id,
+                FirstName = s.FirstName,
+                LastName = s.LastName,
+                Address = s.Address,
                 DateOfBirth = s.DateOfBirth,
-                Email       = s.Email,
-                Phone       = s.Phone,
-                Grade       = s.Grade
+                Email = s.Email,
+                Phone = s.Phone,
+                Grade = s.Grade,
+                EnrollmentStatus = s.EnrollmentStatus
             };
         }
 

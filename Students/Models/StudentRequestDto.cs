@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Students.Models.Validation;
+using Students.Enums;
 
 namespace Students.Models
 {
@@ -26,6 +27,8 @@ namespace Students.Models
         // “K” or "1".."12"
         [Required, Grade]
         public string Grade { get; set; } = string.Empty;
+
+        public EnrollmentStatus? EnrollmentStatus { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using Students.Models;
+using Students.Enums;
 
 namespace Students.Repositories
 {
@@ -15,17 +16,17 @@ namespace Students.Repositories
             Insert(new Student {
                 FirstName = "Ada", LastName = "Lovelace", Address = "1 Analytical Way",
                 DateOfBirth = new DateTime(2008, 12, 10), Email = "ada@example.com",
-                Phone = "321-555-0101", Grade = "12"
+                Phone = "321-555-0101", Grade = "12", EnrollmentStatus = EnrollmentStatus.Active
             });
             Insert(new Student {
                 FirstName = "Alan", LastName = "Turing", Address = "23 Enigma Rd",
                 DateOfBirth = new DateTime(2009, 6, 23), Email = "alan@example.com",
-                Phone = "(321) 555-0102", Grade = "11"
+                Phone = "(321) 555-0102", Grade = "11", EnrollmentStatus = EnrollmentStatus.Active
             });
             Insert(new Student {
                 FirstName = "Grace", LastName = "Hopper", Address = "99 Cobol Ct",
                 DateOfBirth = new DateTime(2010, 12, 9),
-                Grade = "K"
+                Grade = "K", EnrollmentStatus = EnrollmentStatus.Inactive
             });
         }
 
@@ -65,7 +66,8 @@ namespace Students.Repositories
             DateOfBirth = s.DateOfBirth,
             Email = s.Email,
             Phone = s.Phone,
-            Grade = s.Grade
+            Grade = s.Grade,
+            EnrollmentStatus = s.EnrollmentStatus
         };
     }
 }

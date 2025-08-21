@@ -77,6 +77,42 @@ namespace Students.Services
             return _repo.Delete(id);
         }
 
+        public IEnumerable<StudentResponseDto> Search(StudentSearchRequest req)
+        {
+            // 1) normalize/sanitize
+            var name = req.NameContains?.Trim();
+            if (string.IsNullOrWhiteSpace(name)) name = null;
+
+            // 2) pull everything once from repo (PoC) and filter in-memory
+            var q = _repo.GetAll().AsEnumerable();
+
+            if (req.Grade is { } g) q = q.Where(s => s.Grade == g);
+            if (req.EnrollmentStatus is { } st) q = q.Where(s => s.EnrollmentStatus == st);
+            if (name is not null)
+                q = q.Where(s =>
+                    (s.FirstName?.Contains(name, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                    (s.LastName?.Contains(name, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                    (s.Email?.Contains(name, StringComparison.OrdinalIgnoreCase) ?? false));
+
+            // 3) sort
+            q = (req.SortBy?.ToLowerInvariant()) switch
+            {
+                "firstname" => req.Desc ? q.OrderByDescending(s => s.FirstName) : q.OrderBy(s => s.FirstName),
+                "lastname" => req.Desc ? q.OrderByDescending(s => s.LastName) : q.OrderBy(s => s.LastName),
+                "grade" => req.Desc ? q.OrderByDescending(s => s.Grade) : q.OrderBy(s => s.Grade),
+                _ => req.Desc ? q.OrderByDescending(s => s.Id) : q.OrderBy(s => s.Id),
+            };
+
+            // 4) page
+            var skip = (req.Page - 1) * req.PageSize;
+            q = q.Skip(skip).Take(req.PageSize);
+
+            // 5) map to response DTOs
+            return q.Select(s => new StudentResponseDto(
+                s.Id, s.FirstName, s.LastName, s.Email, s.Grade, s.EnrollmentStatus
+            )).ToList();
+        }
+
         private static string? Normalize(string? e)
             => string.IsNullOrWhiteSpace(e) ? null : e.Trim().ToLowerInvariant();
 
